@@ -1,0 +1,15 @@
+{
+    "weather": {
+        "location": "location short name (optional)",
+        "latitude": "location latitude",
+        "longitude": "location longitude"
+    },
+    "hue": {
+        "hostname": "hue bridge ip address",
+        "username": "hue bridge username",
+        "lightId": hue bridge light id
+    },
+    "tokens": {
+        "forecastio": "forecast.io developer key"
+    }
+}

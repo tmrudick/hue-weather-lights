@@ -1,0 +1,24 @@
+{
+  "name": "weather-lights",
+  "version": "1.0.0",
+  "description": "Change the color of Philips Hue lights based on the weather",
+  "main": "app.js",
+  "dependencies": {
+    "request": "~2.27.0",
+    "node-hue-api": "~0.2.1",
+    "tonic": "0.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tmrudick/hue-weather-lights.git"
+  },
+  "author": "Tom Rudick <tmrudick@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tmrudick/hue-weather-lights/issues"
+  }
+}
