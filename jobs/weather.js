@@ -17,7 +17,7 @@ job('get weather', function(done) {
     request({ url: url, json:true}, function(err, data) {
         done(data.body);
     });
-}).at('45 7 * * *');
+}).at('15 7 * * *').defer();
 
 // Determine if it will rain
 job('will rain?', function(done, forecast) {
@@ -42,9 +42,9 @@ job(function(done, rainy) {
     var api = new HueApi(this.config.hue.hostname, this.config.hue.username);
 
     if (rainy) {
-        api.setLightState(this.config.hue.lightId, states.rainy, done);
+        api.setLightState(this.config.hue.rainLightId, states.rainy, done);
     } else {
-        api.setLightState(this.config.hue.lightId, states.sunny, done);
+        api.setLightState(this.config.hue.rainLightId, states.sunny, done);
     }
 }).after('will rain?');
 
@@ -53,9 +53,9 @@ job(function(done, cold) {
     var api = new HueApi(this.config.hue.hostname, this.config.hue.username);
 
     if (cold) {
-        api.setLightState(3, states.cold, done);
+        api.setLightState(this.config.hue.coldLightId, states.cold, done);
     } else {
-        api.setLightState(3, states.sunny, done);
+        api.setLightState(this.config.hue.coldLightId, states.sunny, done);
     }
 }).after('is cold?');
 
