@@ -5,6 +5,7 @@ var request = require('request'),
 // Build states onces
 var states = {
     rainy: LightState.create().on().rgb(0, 0, 255).brightness(80),
+    cold: LightState.create().on().rgb(255,0,0).brightness(80),
     sunny: LightState.create().on().white(500, 80),
     off: LightState.create().off()
 };
@@ -16,11 +17,20 @@ job('get weather', function(done) {
     request({ url: url, json:true}, function(err, data) {
         done(data.body);
     });
-}).at('45 7 * * *').defer();
+}).at('45 7 * * *');
 
 // Determine if it will rain
 job('will rain?', function(done, forecast) {
     if (forecast.daily.data[0].icon === 'rain') {
+        done(true);
+    } else {
+        done(false);
+    }
+}).after('get weather');
+
+//Determine if will be very cold
+job('is cold?', function(done, forecast) {
+    if (forecast.currently.temperature < 32){
         done(true);
     } else {
         done(false);
@@ -37,6 +47,17 @@ job(function(done, rainy) {
         api.setLightState(this.config.hue.lightId, states.sunny, done);
     }
 }).after('will rain?');
+
+// Turn the light on based on if it is very cold
+job(function(done, cold) {
+    var api = new HueApi(this.config.hue.hostname, this.config.hue.username);
+
+    if (cold) {
+        api.setLightState(3, states.cold, done);
+    } else {
+        api.setLightState(3, states.sunny, done);
+    }
+}).after('is cold?');
 
 // Turn the lights off at 8:45am
 job(function(done) {
