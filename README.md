@@ -1,7 +1,7 @@
 hue-weather-lights
 =======
 
-Turns on a light in my bedroom every morning at 7:45am. It will be blue if I should take an umbrella to work and white if it will be a non-rainy day. The light will then turn itself off at 8:45am.
+Turns on a light in my bedroom every morning at 7:45am. It will be blue if I should take an umbrella to work and white if it will be a non-rainy day. It will be red if it will be colder than 32 degree F. It will be purple if it will be both cold and rainy. The light will then turn itself off at 8:45am.
 
 Requirements
 -------

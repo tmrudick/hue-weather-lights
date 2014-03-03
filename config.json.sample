@@ -7,8 +7,7 @@
     "hue": {
         "hostname": "hue bridge ip address",
         "username": "hue bridge username",
-        "rainLightId": hue bridge light id,
-        "coldLightId": hue bridge light id
+        "lightId": hue bridge light id
     },
     "tokens": {
         "forecastio": "forecast.io developer key"
