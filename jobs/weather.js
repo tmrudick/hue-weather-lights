@@ -2,9 +2,9 @@ var request = require('request'),
     HueApi = require('node-hue-api').HueApi,
     LightState = require('node-hue-api').lightState;
 
-// Get the weather data from forecast.io at 7:45am
+// Get the weather data from darksky.net at 7:15am
 job('get weather', function(done) {
-    var url = 'https://api.forecast.io/forecast/' + this.config.tokens.forecastio + '/' + this.config.weather.latitude + ',' + this.config.weather.longitude;
+    var url = 'https://api.darksky.net/forecast/' + this.config.tokens.forecastio + '/' + this.config.weather.latitude + ',' + this.config.weather.longitude;
 
     request({ url: url, json:true}, function(err, data) {
         done({
